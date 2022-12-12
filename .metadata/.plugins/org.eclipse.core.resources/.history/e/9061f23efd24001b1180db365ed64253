@@ -1,0 +1,20 @@
+package laba;
+
+import javax.swing.*;
+
+public class TestDriverAST {
+	private static final String EXAMPLES_DIR = "C:\\Users\\Claudiu\\Dropbox\\CMC\\examples";
+
+	public static void main(String[] args) {
+		JFileChooser fc = new JFileChooser( EXAMPLES_DIR );
+		char check;
+		if( fc.showOpenDialog( null ) == fc.APPROVE_OPTION ) {
+			SourceFile in = new SourceFile( fc.getSelectedFile().getAbsolutePath() );
+			do {
+			check = in.getSource();
+			System.out.print(check);	
+			}while(check != in.EOT);
+		}
+	}
+
+}

@@ -1,0 +1,93 @@
+package laba;
+import laba.ast.*;
+import static laba.TokenKind.*;
+public class ParserAST {
+private Scanner scan;
+	
+	
+	public Token currentTerminal;
+	
+	
+	public ParserAST( Scanner scan )
+	{
+		this.scan = scan;
+		
+		currentTerminal = scan.scan();
+	}
+	
+	public Program parseProgram()
+	{
+		accept( DECS );
+		Declarations decs = parseDeclarations();
+		accept( SCED );
+		Statements stats = parseStatements();
+		return new Program(decs, stats);
+	}
+	private Declarations parseDeclarations()
+	{
+		Declarations decs = new Declarations();
+		
+		while( currentTerminal.kind == BOOL)
+			decs.dec.add( parseOneDeclaration() );
+			
+		return decs;
+	}
+	private Declaration parseOneDeclaration()
+	{
+		switch( currentTerminal.kind ) {
+			case BOOL:
+				accept( BOOL );
+				Identifier id = parseIdentifier();
+				accept( SEMICOLON );
+				
+				return new VariableDeclaration( id );
+				
+				
+			default:
+				System.out.println( "var or func expected" );
+				return null;
+		}
+	}
+	private Identifier parseIdentifier()
+	{
+		if( currentTerminal.kind == IDENTIFIER ) {
+			Identifier res = new Identifier( currentTerminal.spelling );
+			currentTerminal = scan.scan();
+			System.out.println(currentTerminal.spelling);
+			return res;
+		} else {
+			System.out.println( "Identifier expected" );
+			
+			return new Identifier( "???" );
+		}
+	}
+	private Statements parseStatements()
+	{
+		Statements stats = new Statements();
+		
+		while( currentTerminal.kind == BOOLLITERAL)
+			stats.stat.add( parseOneStatement() );
+			
+		return stats;
+	}
+	private Statement parseOneStatement()
+	{
+		switch( currentTerminal.kind ) {
+			case IDENTIFIER:
+			case INTEGERLITERAL:
+			case OPERATOR:
+			case BOOLLITERAL:
+				
+			default:
+				System.out.println( "Error in statement" );
+				return null;
+		}
+	}
+	private void accept( TokenKind expected )
+	{
+		if( currentTerminal.kind == expected )
+			currentTerminal = scan.scan();
+		else
+			System.out.println( "Expected token of kind " + expected );
+	}
+}

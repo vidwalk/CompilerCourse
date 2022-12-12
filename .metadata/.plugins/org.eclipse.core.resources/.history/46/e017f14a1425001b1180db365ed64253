@@ -1,0 +1,199 @@
+package laba;
+import laba.ast.*;
+import static laba.TokenKind.*;
+public class ParserAST {
+private Scanner scan;
+	
+	
+	public Token currentTerminal;
+	
+	
+	public ParserAST( Scanner scan )
+	{
+		this.scan = scan;
+		
+		currentTerminal = scan.scan();
+	}
+	
+	public Program parseProgram()
+	{
+		accept( DECS );
+		Declarations decs = parseDeclarations();
+		accept( SCED );
+		Statements stats = parseStatements();
+		return new Program(decs, stats);
+	}
+	private Declarations parseDeclarations()
+	{
+		Declarations decs = new Declarations();
+		
+		while( currentTerminal.kind == BOOL || currentTerminal.kind == INT)
+			decs.dec.add( parseOneDeclaration() );
+			
+		return decs;
+	}
+	private Declaration parseOneDeclaration()
+	{
+		switch( currentTerminal.kind ) {
+			case BOOL:
+				TypeIdentifier typeBool = parseTypeIdentifier();
+				Identifier idBool = parseIdentifier();
+				accept( SEMICOLON );
+				return new VariableDeclaration( typeBool, idBool );
+			case INT:
+				TypeIdentifier typeInt = parseTypeIdentifier();
+				Identifier idInt = parseIdentifier();
+				accept( SEMICOLON );
+				return new VariableDeclaration( typeInt, idInt );
+				
+			default:
+				System.out.println( "var or func expected" );
+				return null;
+		}
+	}
+	private Identifier parseIdentifier()
+	{
+		if( currentTerminal.kind == IDENTIFIER ) {
+			
+			Identifier res = new Identifier( currentTerminal.spelling );
+			currentTerminal = scan.scan();
+			
+			return res;
+		} else {
+			System.out.println( "Identifier expected" );
+			
+			return new Identifier( "???" );
+		}
+	}
+	private TypeIdentifier parseTypeIdentifier()
+	{
+		if( currentTerminal.kind == BOOL ) {
+			
+			TypeIdentifier res = new TypeIdentifier( currentTerminal.spelling );
+			currentTerminal = scan.scan();
+			
+			return res;
+		}
+		else if( currentTerminal.kind == INT ) {
+			
+			TypeIdentifier res = new TypeIdentifier( currentTerminal.spelling );
+			currentTerminal = scan.scan();
+			
+			return res;
+		}else if( currentTerminal.kind == DOUBLE ) {
+			
+			TypeIdentifier res = new TypeIdentifier( currentTerminal.spelling );
+			currentTerminal = scan.scan();
+			
+			return res;
+		}else {
+			System.out.println( "TypeIdentifier expected" );
+			
+			return new TypeIdentifier( "???" );
+		}
+	}
+	private Statements parseStatements()
+	{
+		Statements stats = new Statements();
+		
+		while( currentTerminal.kind == IDENTIFIER)
+			stats.stat.add( parseOneStatement() );
+			
+		return stats;
+	}
+	private Statement parseOneStatement()
+	{
+		switch( currentTerminal.kind ) {
+			case IDENTIFIER:
+				Identifier id = parseIdentifier();
+				Operator op = parseOperator();
+				Expression expr = parseExpression();
+				accept( SEMICOLON );
+				
+				return new AssignStatement( id, op, expr);
+			default:
+				System.out.println( "Error in statement" );
+				return null;
+		}
+	}
+	private Expression parseExpression()
+	{
+		Expression res = parsePrimary();
+		while( currentTerminal.kind == OPERATOR ) {
+			Operator op = parseOperator();
+			Expression tmp = parsePrimary();
+			
+			res = new PrimaryExpression( op, res, tmp );
+		}
+		
+	return res;
+	}
+	private Expression parsePrimary()
+	{
+		switch( currentTerminal.kind ) {
+			case IDENTIFIER:
+				Identifier name = parseIdentifier();
+				return new IdentifierExpression( name );
+				
+			case BOOLLITERAL:
+				Value boolValue = parseValue();
+				return new ValueExpression( boolValue );
+				
+			case INTEGERLITERAL:
+				Value intValue = parseValue();
+				return new ValueExpression( intValue );	
+				
+			case DOUBLELITERAL:
+				Value doubleValue = parseValue();
+				return new ValueExpression( doubleValue );	
+				
+			case LEFTPARAN:
+				accept( LEFTPARAN );
+				Expression res = parseExpression();
+				accept( RIGHTPARAN );
+				return res;
+				
+			default:
+				System.out.println( "Error in primary" );
+				return null;
+		}
+	}
+	private Operator parseOperator()
+	{
+		if( currentTerminal.kind == OPERATOR ) {
+			Operator res = new Operator( currentTerminal.spelling );
+			currentTerminal = scan.scan();
+			
+			return res;
+		} else {
+			System.out.println( "Operator expected" );
+			
+			return new Operator( "???" );
+		}
+	}
+	private Value parseValue()
+	{
+		if( currentTerminal.kind == BOOLLITERAL ) {
+			Value res = new Value( currentTerminal.spelling );
+			currentTerminal = scan.scan();
+			
+			return res;
+		} else if( currentTerminal.kind == INTEGERLITERAL ) {
+			Value res = new Value( currentTerminal.spelling );
+			currentTerminal = scan.scan();
+			
+			return res;
+		}else {
+			System.out.println( "Operator expected" );
+			
+			return new Value( "???" );
+		}
+	}
+	private void accept( TokenKind expected )
+	{
+		if( currentTerminal.kind == expected )
+			currentTerminal = scan.scan();
+		else
+			System.out.println( "Expected token of kind " + expected );
+	}
+}

@@ -1,0 +1,11 @@
+import javax.swing.*;
+
+public class TestDriverAST {
+	private static final String EXAMPLES_DIR = "C:\\Users\\Claudiu\\Dropbox\\CMC";
+
+	public static void main(String[] args) {
+		JFileChooser fc = new JFileChooser( EXAMPLES_DIR );
+
+	}
+
+}

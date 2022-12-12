@@ -1,0 +1,5 @@
+package laba.ast;
+
+public class ValueExpression extends Expression {
+
+}

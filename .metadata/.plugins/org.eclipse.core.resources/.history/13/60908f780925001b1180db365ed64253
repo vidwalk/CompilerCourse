@@ -1,0 +1,14 @@
+package laba.ast;
+
+public class AssignStatement extends Statement {
+	public Identifier id;
+	public Operator operator;
+	public Value cacat;
+	
+	public AssignStatement(id, operator ,value) 
+	{
+		this.id = id;
+		this.operator = operator;
+		this.value = value;
+	}
+}

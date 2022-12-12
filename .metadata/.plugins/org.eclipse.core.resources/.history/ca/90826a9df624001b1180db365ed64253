@@ -1,0 +1,29 @@
+package laba;
+
+import static laba.TokenKind.*;
+
+public class Token {
+	public TokenKind kind;
+	public String spelling;
+	
+	
+	public Token( TokenKind kind, String spelling )
+	{
+		this.kind = kind;
+		this.spelling = spelling;
+		
+		if( kind == IDENTIFIER )
+/*
+			for( byte i = 0; i < SPELLINGS.length; ++i )
+				if( spelling.equals( SPELLINGS[i] ) ) {
+					this.kind = i;
+					break;
+				}
+*/
+			for( TokenKind tk: KEYWORDS )
+				if( spelling.equals( tk.getSpelling() ) ) {
+					this.kind = tk;
+					break;
+				}
+	}
+}

@@ -1,0 +1,7 @@
+package laba.ast;
+
+import java.beans.Statement;
+
+public class AssignStatement extends Statement {
+
+}

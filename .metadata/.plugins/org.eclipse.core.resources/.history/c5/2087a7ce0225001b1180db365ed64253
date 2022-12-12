@@ -1,0 +1,7 @@
+package laba;
+
+import javax.swing.JFrame;
+
+public class ASTViewer extends JFrame {
+
+}

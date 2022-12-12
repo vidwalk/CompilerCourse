@@ -1,0 +1,69 @@
+package laba;
+
+import java.awt.Font;
+
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import laba.ast.*;
+public class ASTViewer
+extends JFrame
+{
+private static final Font NODE_FONT = new Font( "Verdana", Font.PLAIN, 24 );
+
+
+public ASTViewer( AST ast )
+{
+	super( "Abstract Syntax Tree" );
+	
+	DefaultMutableTreeNode root = createTree( ast );
+	JTree tree = new JTree( root );
+	DefaultTreeCellRenderer renderer = new DefaultTreeCellRenderer();
+	renderer.setFont( NODE_FONT );
+	tree.setCellRenderer( renderer );
+	
+	add( new JScrollPane( tree ) );
+	
+	setSize( 1024, 768 );
+	setVisible( true );
+	
+	setDefaultCloseOperation( EXIT_ON_CLOSE );
+}
+
+
+private DefaultMutableTreeNode createTree( AST ast )
+{
+	DefaultMutableTreeNode node = new DefaultMutableTreeNode( "*** WHAT??? ***" );
+	
+	if( ast == null )
+		node.setUserObject( "*** NULL ***" );
+	else if( ast instanceof Program ) {
+		node.setUserObject( "Program" );
+		node.add( createTree( ((Program)ast).decs ) );
+		node.add( createTree( ((Program)ast).stats ) );
+	}  else if( ast instanceof Declarations ) {
+		node.setUserObject( "Declarations" );
+		
+		for( Declaration d: ((Declarations)ast).dec )
+			node.add( createTree( d ) );
+	} else if( ast instanceof VariableDeclaration ) {
+		node.setUserObject( "VariableDeclaration" );
+		node.add( createTree( ((VariableDeclaration)ast).type ) );
+		node.add( createTree( ((VariableDeclaration)ast).id ) );
+	}  else if( ast instanceof Statements ) {
+		node.setUserObject( "Statements" );
+		
+		for( Statement s: ((Statements)ast).stat )
+			node.add( createTree( s ) );
+	} else if( ast instanceof TypeIdentifier ) {
+		node.setUserObject( "TypeIdentifier " + ((TypeIdentifier)ast).spelling );
+	} else if( ast instanceof Identifier ) {
+		node.setUserObject( "Identifier " + ((Identifier)ast).spelling );
+	} 
+		
+		
+	return node;
+}
+}

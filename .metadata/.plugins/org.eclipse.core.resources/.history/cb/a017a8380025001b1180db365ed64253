@@ -1,0 +1,33 @@
+package laba;
+import laba.ast.*;
+import laba.TokenKind.*;
+public class ParserAST {
+private Scanner scan;
+	
+	
+	public Token currentTerminal;
+	
+	
+	public ParserAST( Scanner scan )
+	{
+		this.scan = scan;
+		
+		currentTerminal = scan.scan();
+	}
+	
+	public Program parseProgram()
+	{
+		accept( DECS );
+		Declarations decs = parseDeclarations();
+		accept( SCED );
+		Statements stats = parseStatements();
+		return new Program(decs, stats);
+	}
+	private void accept( TokenKind expected )
+	{
+		if( currentTerminal.kind == expected )
+			currentTerminal = scan.scan();
+		else
+			System.out.println( "Expected token of kind " + expected );
+	}
+}

@@ -1,0 +1,16 @@
+package laba;
+
+public class ParserAST {
+private Scanner scan;
+	
+	
+	public Token currentTerminal;
+	
+	
+	public ParserAST( Scanner scan )
+	{
+		this.scan = scan;
+		
+		currentTerminal = scan.scan();
+	}
+}

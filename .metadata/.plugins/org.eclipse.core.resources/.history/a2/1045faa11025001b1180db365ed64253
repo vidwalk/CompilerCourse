@@ -1,0 +1,38 @@
+package laba;
+
+public enum TokenKind {
+	IDENTIFIER,
+	INTEGERLITERAL,
+	BOOLLITERAL,
+	OPERATOR,
+	
+	DECS("decs"),
+	SCED("sced"),
+	
+	BOOL("bool"),
+	SEMICOLON(";"),
+	LEFTPARAN(")"),
+	RIGHTPARAN(")"),
+	
+	EOT,
+	
+	ERROR;
+private String spelling = null;
+	
+	
+	private TokenKind()
+	{
+	}
+	
+	
+	private TokenKind( String spelling )
+	{
+		this.spelling = spelling;
+	}
+	
+	
+	public String getSpelling()
+	{
+		return spelling;
+	}
+}
