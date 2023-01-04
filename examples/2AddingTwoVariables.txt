@@ -1,0 +1,6 @@
+decs 
+	int x;
+	int y;
+sced
+
+x 8= x+y;

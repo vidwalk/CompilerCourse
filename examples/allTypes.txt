@@ -1,0 +1,8 @@
+decs
+int x;
+bool y;
+double z;
+sced
+x 8= 1 + x;
+y 8= true;
+z 8= 5.82 + 4.43;

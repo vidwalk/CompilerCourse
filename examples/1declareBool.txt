@@ -1,0 +1,14 @@
+decs
+bool x;
+bool y;
+sced
+x 8= true;
+y 8= false;
+if8 x ==8 y
+~
+plint(4);
+~
+else8
+~
+plint(3);
+~;

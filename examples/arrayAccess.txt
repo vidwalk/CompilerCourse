@@ -1,0 +1,6 @@
+decs
+arr(5,int) x;
+int y;
+sced
+x 8= [1,2,3,4,5];
+y 8= x[3] + x[4];

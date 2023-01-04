@@ -1,0 +1,12 @@
+decs
+	int x;
+sced
+x 8= 4;
+if8 x > 3
+~
+x 8= x-1;
+~
+else8
+~
+x 8= x+1;
+~;

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="javax.swing.tree.DefaultTreeCellRenderer"/>
+    <fullyQualifiedTypeName name="javax.swing.JFrame"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.util.Vector"/>
+    <fullyQualifiedTypeName name="laba.ast.Statements"/>
+    <fullyQualifiedTypeName name="laba.Checker"/>
+    <fullyQualifiedTypeName name="laba.ast.Operator"/>
+    <fullyQualifiedTypeName name="laba.UnaryExpression"/>
+    <fullyQualifiedTypeName name="laba.Encoder"/>
+    <fullyQualifiedTypeName name="laba.ast.Declaration"/>
+    <fullyQualifiedTypeName name="laba.Address"/>
+    <fullyQualifiedTypeName name="laba.ast.Statement"/>
+    <fullyQualifiedTypeName name="laba.ast.Expression"/>
+    <fullyQualifiedTypeName name="laba.TAM.Machine"/>
+</qualifiedTypeNameHistroy>

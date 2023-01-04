@@ -1,0 +1,9 @@
+decs
+int countel;
+sced
+countel 8= 1;
+while8 countel < 10
+~
+countel 8= countel +1;
+plint(countel);
+~;

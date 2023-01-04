@@ -1,0 +1,10 @@
+decs
+int x;
+int y;
+sced
+x 8= -1;
+plint(x);
+y 8= -1 + -2;
+plint(x);
+x 8= -y + 1;
+plint(x);

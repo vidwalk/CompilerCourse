@@ -1,0 +1,8 @@
+decs
+	bool x;
+sced
+x 8= true;
+if8 true ==8 1
+~
+x 8= false;
+~;

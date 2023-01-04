@@ -1,0 +1,6 @@
+decs
+bool x;
+arr(2,bool) y;
+sced
+y 8= [true,false];
+x 8= y[1] + y[3];

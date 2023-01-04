@@ -1,0 +1,14 @@
+decs
+int countel;
+def8 plintAddOne(int var)
+~
+countel 8= countel+var;
+~;
+sced
+countel 8= 2;
+call8 plintAddOne(countel);
+plint(countel);
+call8 plintAddOne(countel+2);
+plint(countel);
+call8 plintAddOne(countel);
+plint(countel);

@@ -1,0 +1,5 @@
+decs
+arr(5,int) x;
+sced
+x 8= [1,2,3,4,5];
+plint(x[2]);

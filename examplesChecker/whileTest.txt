@@ -1,0 +1,8 @@
+decs
+int countel;
+sced
+countel 8= 0;
+while8 countel < true
+~
+countel 8= countel +1;
+~;

@@ -1,0 +1,4 @@
+decs
+arr(2,int) y;
+sced
+y 8= [-3,2,-1,true];

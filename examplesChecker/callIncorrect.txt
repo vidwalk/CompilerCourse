@@ -1,0 +1,18 @@
+decs
+int countel;
+int errorVar;
+bool x;
+def8 plintAddOne(int var)
+~
+plint(var+1);
+~;
+def8 plintSubstractOne(int var, int var2)
+~
+plint(var-1);
+~;
+sced
+countel 8= 2;
+x 8= true;
+call8 plintAddOne(countel,errorVar);
+call8 plintSubstractOne(countel);
+call8 plintSubstractOne(countel,x);

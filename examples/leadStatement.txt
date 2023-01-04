@@ -1,0 +1,4 @@
+decs
+int x;
+sced
+x 8= lead();

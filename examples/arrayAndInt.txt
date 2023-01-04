@@ -1,0 +1,9 @@
+decs
+arr(5,int) x;
+int y;
+sced
+x 8= [3,2,3,4,5];
+y 8= 2;
+plint(x[0]);
+plint(x[4]);
+plint(y + x[1])

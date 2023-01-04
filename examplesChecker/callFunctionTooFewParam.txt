@@ -1,0 +1,9 @@
+decs
+int countel;
+def8 plintSubstractOne(int var, int var2)
+~
+plint(var-1);
+~;
+sced
+countel 8= 2;
+call8 plintSubstractOne(countel);

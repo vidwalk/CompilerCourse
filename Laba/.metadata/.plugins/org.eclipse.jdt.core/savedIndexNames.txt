@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\Claudiu\Dropbox\CMC\LABA\.metadata\.plugins\org.eclipse.jdt.core
+1091967157.index
+2158312854.index
+3462974382.index

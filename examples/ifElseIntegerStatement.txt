@@ -1,0 +1,14 @@
+decs
+	int x;
+	int y;
+sced
+y 8= 4;
+x 8= 6;
+if8 x < y
+~
+plint(y);
+~
+else8
+~
+plint(x);
+~;

@@ -1,0 +1,5 @@
+decs
+bool x;
+bool y;
+sced
+x 8= 1;

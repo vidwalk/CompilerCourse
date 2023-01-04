@@ -1,0 +1,3 @@
+change Header to be of right type
+and and or bool
+epsilon instead of e
